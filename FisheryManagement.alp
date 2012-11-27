@@ -4196,7 +4196,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1344376537123</Id>
-					<Name><![CDATA[memoryOfCPUE]]></Name>
+					<Name><![CDATA[memoryOfCPUELocations]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
 					<X>200</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -4204,8 +4204,8 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[java.util.LinkedHashMap<GridCell,Double>]]></Type>        
-						<InitialValue><![CDATA[new java.util.LinkedHashMap<GridCell,Double>()]]></InitialValue>                 	
+						<Type><![CDATA[ArrayList<GridCell>]]></Type>        
+						<InitialValue><![CDATA[new ArrayList<GridCell>()]]></InitialValue>                 	
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -4302,6 +4302,20 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[LinkedHashMap<GearType,LinkedHashMap>]]></Type>        
 						<InitialValue><![CDATA[new LinkedHashMap<GearType,LinkedHashMap>()]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354037679858</Id>
+					<Name><![CDATA[memoryOfCPUECatch]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>200</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[ArrayList<LinkedHashMap>]]></Type>        
+						<InitialValue><![CDATA[new ArrayList<LinkedHashMap>()]]></InitialValue>                 	
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -5306,7 +5320,8 @@ fuelRemaining -= fuelPerDay*travelTime;]]></Action>
 					<Properties Source="1244587048529" Target="1346349100665" Trigger="timeout">
 						<Action><![CDATA[sellFish();
 
-memoryOfCPUE.clear();
+memoryOfCPUELocations.clear();
+memoryOfCPUECatch.clear();
 ]]></Action>
 						<Timeout><![CDATA[1]]></Timeout>
 						<Condition><![CDATA[true]]></Condition>
@@ -5570,9 +5585,6 @@ updateTripVariables();]]></Action>
 						<Point><X>-30</X><Y>-10</Y></Point>
 					</Points>
 					<Properties Source="1346349100665" Target="1244506578322" Trigger="timeout">
-						<Action><![CDATA[//logFishingTrip();
-memoryOfCPUE.clear();
-]]></Action>
 						<Timeout><![CDATA[1]]></Timeout>
 						<Condition><![CDATA[true]]></Condition>
 						<Rate><![CDATA[1]]></Rate>
@@ -5608,7 +5620,8 @@ if(get_Main().logProfile == 1){
 	get_Main().profileArray.add(new String[]{"catcyAndInteract","end",""+System.currentTimeMillis()});		
 }
 // Remember the CPUE from this fishing set
-memoryOfCPUE.put(currentLocation,fishCatch.get(setGearType.primaryCatchSpecies));
+memoryOfCPUELocations.add(currentLocation);
+memoryOfCPUECatch.add((LinkedHashMap<CatchSpecies,Double>)fishCatch.clone());
 setInCurrentLocation++;
 setGearType.effortSofar++;
 setGearType.numberOfSets.put(currentLocation.oceanRegion,setGearType.numberOfSets.get(currentLocation.oceanRegion) + 1);
@@ -6246,7 +6259,10 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 for(CatchSpecies catchSpec : get_Main().catchSpecies){
 	fishPrice.put(catchSpec, setGearType.estimatePrice(this,catchSpec,get_Main().julianDay));
 	fishRevenue.put(catchSpec, fishPrice.get(catchSpec) * fishCatch.get(catchSpec));
-	currentLocation.oceanRegion.catchValue.put(catchSpec,currentLocation.oceanRegion.catchValue.get(catchSpec) + fishPrice.get(catchSpec) * fishCatch.get(catchSpec));
+	for(int i=0; i< memoryOfCPUELocations.size(); i++){
+		memoryOfCPUELocations.get(i).oceanRegion.catchValue.put(catchSpec,memoryOfCPUELocations.get(i).oceanRegion.catchValue.get(catchSpec) + 
+			fishPrice.get(catchSpec) * ((LinkedHashMap<CatchSpecies,Double>)memoryOfCPUECatch.get(i)).get(catchSpec));
+	}
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -12549,6 +12565,14 @@ try{
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[restingTimeN1]]></ParameterName>
+					<ParameterValue><![CDATA[]]></ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[restingTimeN]]></ParameterName>
+					<ParameterValue><![CDATA[]]></ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[restingTimeP]]></ParameterName>
 					<ParameterValue><![CDATA[]]></ParameterValue>
 				</Parameter>
 			</Parameters>			
