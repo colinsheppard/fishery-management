@@ -3551,6 +3551,28 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
+				<Image>
+					<Id>1354060019429</Id>
+					<Name><![CDATA[image]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>390</X><Y>610</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Width>75</Width>
+					<Height>50</Height>
+					<Rotation>0.0</Rotation>
+					<ImageFiles>
+						<ImageFile><![CDATA[hawaii.gif]]></ImageFile>
+					</ImageFiles>
+					<OriginalSize>false</OriginalSize>
+				</Image>
 			</Shapes>
 			<Controls>
 				<Control Type="RadioButtons">
@@ -11730,7 +11752,7 @@ changes in kinds of regulation affect these measures of the gearType:
 					<Id>1352236517444</Id>
 					<Name><![CDATA[baseYearText]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>710</X><Y>270</Y>
+					<X>650</X><Y>270</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -11742,8 +11764,7 @@ changes in kinds of regulation affect these measures of the gearType:
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[<baseYear>]]></Text>
-					<TextCode><![CDATA[baseYearVar.toString()]]></TextCode>
+					<Text><![CDATA[(1-5 only)]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -11779,7 +11800,7 @@ changes in kinds of regulation affect these measures of the gearType:
 					<Id>1352236706348</Id>
 					<Name><![CDATA[baseYearText1]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>740</X><Y>300</Y>
+					<X>700</X><Y>300</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -11791,8 +11812,7 @@ changes in kinds of regulation affect these measures of the gearType:
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[<yearsToSimulate>]]></Text>
-					<TextCode><![CDATA[yearsToSimulate.toString()]]></TextCode>
+					<Text><![CDATA[(Positive integer greater than 0)]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -12349,58 +12369,6 @@ try{
 						<Link>logVessels</Link>
 	 				</ExtendedProperties>
 				</Control>
-				<Control Type="Slider">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1352235794748</Id>
-					<Name><![CDATA[baseYearSlider]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>610</X><Y>260</Y>
-					<Label><X>-75</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<BasicProperties Width="100" Height="30" 
-				AsObject="true">
-                        <EmbeddedIcon>false</EmbeddedIcon>				
-						<FillColor/>
-						<EnableExpression><![CDATA[true]]></EnableExpression>
-						<ActionCode><![CDATA[baseYearVar = baseYearSlider.getIntValue();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<DefaultValueCode><![CDATA[2]]></DefaultValueCode>
-						<Orientation>HORIZONTAL</Orientation>
-						<MinValue><![CDATA[0]]></MinValue>
-						<MaxValue><![CDATA[4]]></MaxValue>
-						<LinkTo>false</LinkTo>
-						<Link>baseYearVar</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="Slider">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1352236706352</Id>
-					<Name><![CDATA[yearsToSimulateSlider]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>640</X><Y>290</Y>
-					<Label><X>-75</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<BasicProperties Width="100" Height="30" 
-				AsObject="true">
-                        <EmbeddedIcon>false</EmbeddedIcon>				
-						<FillColor/>
-						<EnableExpression><![CDATA[true]]></EnableExpression>
-						<ActionCode><![CDATA[yearsToSimulate = yearsToSimulateSlider.getIntValue();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<DefaultValueCode><![CDATA[5]]></DefaultValueCode>
-						<Orientation>HORIZONTAL</Orientation>
-						<MinValue><![CDATA[1]]></MinValue>
-						<MaxValue><![CDATA[40]]></MaxValue>
-						<LinkTo>false</LinkTo>
-						<Link>baseYearVar</Link>
-					</ExtendedProperties>
-				</Control>
 				<Control Type="CheckBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1352470140063</Id>
@@ -12424,6 +12392,52 @@ try{
 						<LinkTo>false</LinkTo>
 						<Link>logEvents</Link>
 	 				</ExtendedProperties>
+				</Control>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1354061200507</Id>
+					<Name><![CDATA[baseYearEditBox]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>610</X><Y>260</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<BasicProperties Width="30" Height="30" 
+				AsObject="true">
+                        <EmbeddedIcon>false</EmbeddedIcon>				
+						<FillColor/>
+						<TextColor/>
+						<ActionCode><![CDATA[baseYearVar = Integer.parseInt(baseYearEditBox.getText())]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<DefaultValueCode><![CDATA["2"]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1354061445813</Id>
+					<Name><![CDATA[yearsToSimulateEditBox]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>650</X><Y>290</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<BasicProperties Width="40" Height="30" 
+				AsObject="true">
+                        <EmbeddedIcon>false</EmbeddedIcon>				
+						<FillColor/>
+						<TextColor/>
+						<ActionCode><![CDATA[yearsToSimulate = Integer.parseInt(yearsToSimulateEditBox.getText())]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<DefaultValueCode><![CDATA["5"]]></DefaultValueCode>
+						<LinkTo>false</LinkTo>
+					</ExtendedProperties>
 				</Control>
 			</Controls>
 			<Parameters>			
@@ -14234,11 +14248,12 @@ try{
 			<RangeVariationParamValue>	
 				<Id>1293754095428</Id>
 				<Type>FIXED</Type>
+				<Expression><![CDATA[2]]></Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1333648842648</Id>
 				<Type>FIXED</Type>
-				<Expression><![CDATA["BaselineScenario"]]></Expression>
+				<Expression><![CDATA["InteractionExpRealData"]]></Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1336157110369</Id>
@@ -14324,7 +14339,6 @@ try{
 			<RangeVariationParamValue>	
 				<Id>1352236811630</Id>
 				<Type>FIXED</Type>
-				<Expression><![CDATA[1]]></Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1352470269816</Id>
@@ -14334,7 +14348,7 @@ try{
 				<Id>1353108085609</Id>
 				<Type>RANGE</Type>
 				<From><![CDATA[0]]></From>
-				<To><![CDATA[2]]></To>
+				<To><![CDATA[7]]></To>
 				<Step><![CDATA[1]]></Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
@@ -14391,7 +14405,7 @@ try{
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>2</ReplicationPerIteration>
+				<ReplicationPerIteration>1</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>10</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
