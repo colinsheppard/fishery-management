@@ -11471,6 +11471,24 @@ try{
 		warnings.add("In CPUECoefficients.csv, was expecting at least <b>"+ gearTypeByCatchSpecies +
 						"</b> rows for coefficient 'YearlyPrice', but only found <b>"+csvInfo.getInt("cnt")+"</b>.");
 	}
+	/*
+	//
+	//  IPUE BY MONTH
+	//
+	*/
+	csvInfo = stmt.executeQuery("SELECT * FROM GeneralIPUE"); 
+	if(!csvInfo.next()){
+		errors.add("GeneralIPUE.csv does not have any data.");
+	}else{
+		for(String turtleSpeciesCode : (ArrayList<String>)turtleSpeciesColumns.get("turtleSpeciesCode")){
+			try{
+				csvInfo.getDouble(turtleSpeciesCode);
+			}catch(SQLException e){
+				errors.add("GeneralIPUE.csv is missing the column <b>'"+turtleSpeciesCode+"'</b>");
+			}
+		}
+	}
+	csvInfo.close();
 		
 }catch (Exception e){
 	System.out.println("Database Error");
