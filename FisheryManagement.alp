@@ -43,7 +43,7 @@ import au.com.bytecode.opencsv.*;]]></Import>
 String outSuffix = "Out";
 Boolean isSweepRun = !sweepFile.trim().equals("");
 if(isSweepRun){
-	outSuffix += sweepIndex + "_" + runIndex + ".csv";
+	outSuffix += ((sweepFile.trim().equals("none")) ? iterationIndex : sweepIndex) + "_" + replicationIndex + ".csv";
 }else{
 	outSuffix += ".csv";
 }
@@ -589,7 +589,7 @@ try{
 						for(CatchSpecies catchSpec : catchSpecies){
 							loggers.get("FishPrice").writeNext(new String[]{
 								jDay.toString(),
-								baseYear.toString(),
+								baseYear+"",
 								vessel.ID.toString(),
 								gearType.gearTypeCode,
 								catchSpec.catchSpeciesCode,
@@ -1061,7 +1061,7 @@ try{
 					<Id>1217648809562</Id>
 					<Name><![CDATA[homeCell]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>40</Y>
+					<X>30</X><Y>30</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1081,39 +1081,16 @@ try{
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1280551395292</Id>
-					<Name><![CDATA[coldStartYears]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Dynamic="false">
-						<Type><![CDATA[double]]></Type>        
-						<DefaultValue><![CDATA[-1]]></DefaultValue>
-						<ParameterEditor>
-							<Id>1280551395290</Id>
-							<Name><![CDATA[]]></Name>
-							<ExcludeFromBuild>false</ExcludeFromBuild>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<Separator>false</Separator>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
 					<Id>1293754095428</Id>
 					<Name><![CDATA[baseYear]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>140</X><Y>40</Y>
+					<X>30</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Dynamic="false">
-						<Type><![CDATA[Integer]]></Type>        
+						<Type><![CDATA[int]]></Type>        
 						<DefaultValue><![CDATA[0]]></DefaultValue>
 						<ParameterEditor>
 							<Id>1293754095426</Id>
@@ -1130,7 +1107,7 @@ try{
 					<Id>1333648842648</Id>
 					<Name><![CDATA[experimentDirectoryPath]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>100</Y>
+					<X>30</X><Y>90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1314,7 +1291,7 @@ try{
 					<Id>1344378638575</Id>
 					<Name><![CDATA[vesselInitializationDateSpread]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>120</Y>
+					<X>30</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1337,7 +1314,7 @@ try{
 					<Id>1346369561952</Id>
 					<Name><![CDATA[maxVesselsPerCell]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>140</Y>
+					<X>30</X><Y>130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1360,7 +1337,7 @@ try{
 					<Id>1347647238003</Id>
 					<Name><![CDATA[CPUEStandardDeviation]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>160</Y>
+					<X>30</X><Y>150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1544,7 +1521,7 @@ try{
 					<Id>1350247229597</Id>
 					<Name><![CDATA[maxStorageDays]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>180</Y>
+					<X>30</X><Y>170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1613,13 +1590,13 @@ try{
 					<Id>1352236811630</Id>
 					<Name><![CDATA[yearsToSimulate]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>50</X><Y>80</Y>
+					<X>30</X><Y>70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Dynamic="false">
-						<Type><![CDATA[Integer]]></Type>        
+						<Type><![CDATA[int]]></Type>        
 						<DefaultValue><![CDATA[5]]></DefaultValue>
 						<ParameterEditor>
 							<Id>1352236811628</Id>
@@ -1703,7 +1680,7 @@ try{
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1353112054827</Id>
-					<Name><![CDATA[runIndex]]></Name>
+					<Name><![CDATA[replicationIndex]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
 					<X>-550</X><Y>80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -1728,7 +1705,7 @@ try{
 					<Id>1353982727309</Id>
 					<Name><![CDATA[restingTimeN]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>250</X><Y>130</Y>
+					<X>130</X><Y>30</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1751,7 +1728,7 @@ try{
 					<Id>1353982756505</Id>
 					<Name><![CDATA[restingTimeP]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>250</X><Y>150</Y>
+					<X>130</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1761,6 +1738,29 @@ try{
 						<DefaultValue><![CDATA[new LinkedHashMap<GearType,Double>()]]></DefaultValue>
 						<ParameterEditor>
 							<Id>1353982756503</Id>
+							<Name><![CDATA[]]></Name>
+							<ExcludeFromBuild>false</ExcludeFromBuild>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<Separator>false</Separator>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1354066518678</Id>
+					<Name><![CDATA[iterationIndex]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-550</X><Y>100</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Dynamic="false">
+						<Type><![CDATA[int]]></Type>        
+						<DefaultValue><![CDATA[0]]></DefaultValue>
+						<ParameterEditor>
+							<Id>1354066518676</Id>
 							<Name><![CDATA[]]></Name>
 							<ExcludeFromBuild>false</ExcludeFromBuild>
 							<EditorContolType>TEXT_BOX</EditorContolType>
@@ -2887,7 +2887,7 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 					<Id>1280379541654</Id>
 					<Name><![CDATA[rectangle2]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>20</Y>
+					<X>10</X><Y>20</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3702,7 +3702,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1214817082437</Id>
 					<Name><![CDATA[fishRevenue]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>320</Y>
+					<X>200</X><Y>300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3896,7 +3896,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1280530536346</Id>
 					<Name><![CDATA[fishPrice]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>340</Y>
+					<X>200</X><Y>320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3910,7 +3910,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1280530732320</Id>
 					<Name><![CDATA[departureDate]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>300</Y>
+					<X>200</X><Y>280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3923,7 +3923,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1280530808366</Id>
 					<Name><![CDATA[returnDate]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>280</Y>
+					<X>200</X><Y>260</Y>
 					<Label><X>20</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4068,7 +4068,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1309299810856</Id>
 					<Name><![CDATA[numSearchAttempts]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>260</Y>
+					<X>200</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6198,16 +6198,16 @@ if(maxIndr > 0){
 }else{
 	readyGo = false;
 }
-get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),getActivityState(),
-	"Make fishing trip decision: result="+readyGo+
-	" gearType="+(readyGo & setGearType!=null ? setGearType.gearTypeCode : "")+" departDate="+(tripDelay+time())});]]></Body>
+//get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),getActivityState(),
+//	"Make fishing trip decision: result="+readyGo+
+//	" gearType="+(readyGo & setGearType!=null ? setGearType.gearTypeCode : "")+" departDate="+(tripDelay+time())});]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnType><![CDATA[void]]></ReturnType>
 					<Id>1281314691323</Id>
 					<Name><![CDATA[catchFish]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>430</Y>
+					<X>200</X><Y>390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6243,12 +6243,12 @@ catchByDay.put(roundInt(time()).toString(),(LinkedHashMap<CatchSpecies,Double>)f
 					<Id>1281314764635</Id>
 					<Name><![CDATA[interact]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>450</Y>
+					<X>200</X><Y>410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Determine turtle interaction"});
+					<Body><![CDATA[//get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Determine turtle interaction"});
 
 for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 	Double probOfInteract = IPUEAdjFactor.get(turtleSpec) * currentLocation.getDailyIPUE(setGearType,turtleSpec) * hooks.get(setGearType);
@@ -6496,7 +6496,7 @@ travelTime=(int)limitMin(get_Main().distanceFromHomeToCell.get(destinationLocati
 setGearType.numberOfTrips.put(destinationLocation.oceanRegion,setGearType.numberOfTrips.get(destinationLocation.oceanRegion) + 1);
 
 
-get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),getActivityState(),"Start a trip"});
+get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),getActivityState(),"Start a trip - "+setGearType.gearTypeCode});
 
 ]]></Body>
 				</Function>
@@ -6513,38 +6513,8 @@ get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Ve
 					<Body><![CDATA[tripCost += (fishingGroundFound) ? operatingCost.get(setGearType) : travelCost;
 fuelRemaining -= fuelPerDay;
 if(anyFishCaughtThisTrip)ageOfCatch++;
-get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),getActivityState(),"Update trip variables"});
+//get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),getActivityState(),"Update trip variables"});
 ]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnType><![CDATA[void]]></ReturnType>
-					<Id>1344363137417</Id>
-					<Name><![CDATA[logFishingTrip]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>240</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[if(get_Main().cumulativeYears>get_Main().coldStartYears){
-	Trip ft=add_trip();
-	ft.vesselID=ID;
-	ft.setGearType=setGearType;
-	ft.tripNumber=tripNumber;
-	ft.fishPrice=fishPrice;
-	ft.departureDate=departureDate;
-	ft.returnDate=returnDate;
-	ft.endDay=endDay;
-	ft.endMonth=endMonth;
-	ft.endYear=endYear;
-	ft.startDay=startDay;
-	ft.startMonth=startMonth;
-	ft.startYear=startYear;
-	for(CatchSpecies catchSpec : get_Main().catchSpecies){
-		ft.catchSoFar.put(catchSpec,((Double)totalFishCatch.get(catchSpec)).intValue());
-	}
-	ft.expRev=expectedDailyRevenue;
-}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnType><![CDATA[void]]></ReturnType>
@@ -6603,7 +6573,7 @@ if(!(returnMaxTrip || returnOutOfFuel || returnOutOfStorage)){
 	returnNegativeNetRevenue = expectedNetRevenue < 0;
 }
 returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnNegativeNetRevenue;
-get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Decide whether to return: result="+returnToPort});
+//get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Decide whether to return: result="+returnToPort});
 if(get_Main().logReturn == 1){
 	String[] stringsToLog = new String[17 + 4 * get_Main().catchSpecies.size()];
 	int stringsToLogCounter = 0;
@@ -7202,7 +7172,7 @@ if(get_Main().logReturn == 1){
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>170</Width>
-					<Height>220</Height>
+					<Height>180</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
@@ -7284,7 +7254,7 @@ if(get_Main().logReturn == 1){
 					<Id>1333150510425</Id>
 					<Name><![CDATA[rectangle8]]></Name>
 					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>180</X><Y>410</Y>
+					<X>180</X><Y>370</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7309,7 +7279,7 @@ if(get_Main().logReturn == 1){
 					<Id>1333150510427</Id>
 					<Name><![CDATA[text24]]></Name>
 					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>180</X><Y>390</Y>
+					<X>180</X><Y>350</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -11588,7 +11558,7 @@ openClosures.setEnabled(false);]]></Body>
 					<Id>1291003682307</Id>
 					<Name><![CDATA[text15]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>10</X><Y>70</Y>
+					<X>30</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -11599,7 +11569,7 @@ openClosures.setEnabled(false);]]></Body>
 					<ShowIn3D>false</ShowIn3D>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-8355840</Color>
+					<Color>-16777216</Color>
 					<Text><![CDATA[Fishery Management Model of Hawaii’s Longline Fisheries is an agent-based simulation model designed for assessing the potential impacts 
 of alternative gearTypes regulatory policies on Hawaii’s longline fisheries (HLF). It intends to capture the key elements that influence the
  fishing decision-making of fishermen in Hawaii’s longline gearTypes and thus is capable of producing and assessing the possible
@@ -11616,7 +11586,7 @@ changes in kinds of regulation affect these measures of the gearType:
 					<Font>
 						<Name>Arial</Name>
 						<Size>12</Size>
-						<Style>1</Style>
+						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
@@ -12492,10 +12462,6 @@ try{
 					<ParameterValue><![CDATA[experimentDirectoryPath]]></ParameterValue>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[coldStartYears]]></ParameterName>
-					<ParameterValue><![CDATA[]]></ParameterValue>
-				</Parameter>
-				<Parameter>
 					<ParameterName><![CDATA[logVessels1]]></ParameterName>
 					<ParameterValue><![CDATA[]]></ParameterValue>
 				</Parameter>
@@ -12607,6 +12573,18 @@ try{
 					<ParameterName><![CDATA[restingTimeP]]></ParameterName>
 					<ParameterValue><![CDATA[]]></ParameterValue>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[replicationIndex1]]></ParameterName>
+					<ParameterValue><![CDATA[]]></ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[replicationIndex]]></ParameterName>
+					<ParameterValue><![CDATA[]]></ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[iterationIndex]]></ParameterName>
+					<ParameterValue><![CDATA[]]></ParameterValue>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties 
 				EnableAdaptiveFrameManagement="true" 
@@ -12649,7 +12627,7 @@ try{
 		<!--   =========  Parameter Variation Experiment   ========  -->
 		<ParamVariationExperiment ActiveObjectClassId="1200728345766">
 			<Id>1353107457221</Id>
-			<Name><![CDATA[ParametersVariation]]></Name>
+			<Name><![CDATA[ParameterSweep]]></Name>
 			<ExcludeFromBuild>false</ExcludeFromBuild>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
@@ -12721,7 +12699,7 @@ try{
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Parameter Variation Experiment]]></Text>
+					<Text><![CDATA[Parameter Sweep Experiment]]></Text>
 					<Font>
 						<Name>Serif</Name>
 						<Size>16</Size>
@@ -12745,7 +12723,7 @@ try{
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Iteration:]]></Text>
+					<Text><![CDATA[Replication:]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -12762,7 +12740,7 @@ try{
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
+					<VisibleCode><![CDATA[getCurrentReplication() > 0]]></VisibleCode>
 					<AsObject>true</AsObject>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Lock>false</Lock>
@@ -12771,7 +12749,7 @@ try{
 					<Rotation>0.0</Rotation>
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format(getCurrentIteration())]]></TextCode>
+					<TextCode><![CDATA[format(getCurrentReplication())]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -12832,109 +12810,9 @@ try{
 				</Text>
 				<Text>
 					<Id>0</Id>
-					<Name><![CDATA[text5]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>190</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[homeCell]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
-					<Name><![CDATA[text6]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>190</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[String.valueOf( homeCell )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
-					<Name><![CDATA[text7]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[coldStartYears]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
-					<Name><![CDATA[text8]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( coldStartYears )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
 					<Name><![CDATA[text9]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>230</Y>
+					<X>20</X><Y>180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -12958,7 +12836,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text10]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>230</Y>
+					<X>240</X><Y>180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -12984,7 +12862,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text11]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>250</Y>
+					<X>340</X><Y>90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13008,7 +12886,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text12]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>250</Y>
+					<X>560</X><Y>90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13028,13 +12906,13 @@ try{
 						<Size>12</Size>
 						<Style>0</Style>
 					</Font>
-					<Alignment>RIGHT</Alignment>
+					<Alignment>LEFT</Alignment>
 				</Text>
 				<Text>
 					<Id>0</Id>
 					<Name><![CDATA[text13]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>270</Y>
+					<X>340</X><Y>180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13058,7 +12936,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text14]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>270</Y>
+					<X>560</X><Y>180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13084,7 +12962,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text15]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>290</Y>
+					<X>340</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13108,7 +12986,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text16]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>290</Y>
+					<X>560</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13132,59 +13010,9 @@ try{
 				</Text>
 				<Text>
 					<Id>0</Id>
-					<Name><![CDATA[text17]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>310</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[gridDisplayLongestSide]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
-					<Name><![CDATA[text18]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>310</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( gridDisplayLongestSide )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
 					<Name><![CDATA[text19]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>330</Y>
+					<X>340</X><Y>220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13208,7 +13036,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text20]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>330</Y>
+					<X>560</X><Y>220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13234,7 +13062,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text21]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>350</Y>
+					<X>340</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13258,7 +13086,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text22]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>350</Y>
+					<X>560</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13284,7 +13112,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text23]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>370</Y>
+					<X>340</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13308,7 +13136,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text24]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>370</Y>
+					<X>560</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13334,7 +13162,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text25]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>390</Y>
+					<X>340</X><Y>280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13358,7 +13186,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text26]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>390</Y>
+					<X>560</X><Y>280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13384,7 +13212,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text27]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>410</Y>
+					<X>20</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13408,7 +13236,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text28]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>410</Y>
+					<X>240</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13434,7 +13262,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text29]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>430</Y>
+					<X>20</X><Y>220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13458,7 +13286,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text30]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>430</Y>
+					<X>240</X><Y>220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13484,7 +13312,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text31]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>450</Y>
+					<X>20</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13508,7 +13336,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text32]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>450</Y>
+					<X>240</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13534,7 +13362,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text33]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>470</Y>
+					<X>340</X><Y>300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13558,7 +13386,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text34]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>470</Y>
+					<X>560</X><Y>300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13584,7 +13412,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text35]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>490</Y>
+					<X>340</X><Y>320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13608,7 +13436,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text36]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>490</Y>
+					<X>560</X><Y>320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13634,7 +13462,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text37]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>510</Y>
+					<X>340</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13658,7 +13486,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text38]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>510</Y>
+					<X>560</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13684,7 +13512,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text39]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>530</Y>
+					<X>340</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13708,7 +13536,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text40]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>530</Y>
+					<X>560</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13734,7 +13562,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text41]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>550</Y>
+					<X>340</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13758,7 +13586,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text42]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>550</Y>
+					<X>560</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13784,7 +13612,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text43]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>570</Y>
+					<X>340</X><Y>400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13808,7 +13636,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text44]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>570</Y>
+					<X>560</X><Y>400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13834,7 +13662,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text45]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>590</Y>
+					<X>340</X><Y>420</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13858,7 +13686,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text46]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>590</Y>
+					<X>560</X><Y>420</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13882,59 +13710,9 @@ try{
 				</Text>
 				<Text>
 					<Id>0</Id>
-					<Name><![CDATA[text47]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>610</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[maxStorageDays]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
-					<Name><![CDATA[text48]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>610</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[String.valueOf( maxStorageDays )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>0</Id>
 					<Name><![CDATA[text49]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>630</Y>
+					<X>340</X><Y>440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13958,7 +13736,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text50]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>630</Y>
+					<X>560</X><Y>440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -13984,7 +13762,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text51]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>650</Y>
+					<X>340</X><Y>460</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -14008,7 +13786,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text52]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>650</Y>
+					<X>560</X><Y>460</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -14034,7 +13812,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text53]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>670</Y>
+					<X>20</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -14058,7 +13836,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text54]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>670</Y>
+					<X>240</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -14084,7 +13862,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text55]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>690</Y>
+					<X>340</X><Y>480</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -14108,7 +13886,7 @@ try{
 					<Id>0</Id>
 					<Name><![CDATA[text56]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>240</X><Y>690</Y>
+					<X>560</X><Y>480</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -14123,6 +13901,180 @@ try{
 					<Color>-12042869</Color>
 					<Text><![CDATA[?]]></Text>
 					<TextCode><![CDATA[format( logProfile )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354063956180</Id>
+					<Name><![CDATA[text7]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>340</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Log Files]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354065229194</Id>
+					<Name><![CDATA[text57]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[sweepFile]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354065229196</Id>
+					<Name><![CDATA[text58]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>240</X><Y>280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[String.valueOf( sweepFile )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354065260705</Id>
+					<Name><![CDATA[text59]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[sweepIndex]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354065260707</Id>
+					<Name><![CDATA[text60]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>240</X><Y>300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[String.valueOf( sweepIndex )]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354068129103</Id>
+					<Name><![CDATA[text5]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Iteration:]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354068129105</Id>
+					<Name><![CDATA[text6]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>240</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-12042869</Color>
+					<Text><![CDATA[?]]></Text>
+					<TextCode><![CDATA[format(getCurrentIteration())]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -14161,9 +14113,6 @@ try{
 			<NumberOfRuns>3</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1217648809562</Id>
-			</FreeformParamValue>
-			<FreeformParamValue>	
-				<Id>1280551395292</Id>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1293754095428</Id>
@@ -14255,18 +14204,20 @@ try{
 			<FreeformParamValue>	
 				<Id>1353982756505</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1354066518678</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1217648809562</Id>
-				<Type>FIXED</Type>
-			</RangeVariationParamValue>
-			<RangeVariationParamValue>	
-				<Id>1280551395292</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1293754095428</Id>
 				<Type>FIXED</Type>
 				<Expression><![CDATA[2]]></Expression>
+				<From><![CDATA[1]]></From>
+				<To><![CDATA[3]]></To>
+				<Step><![CDATA[1]]></Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1333648842648</Id>
@@ -14357,6 +14308,7 @@ try{
 			<RangeVariationParamValue>	
 				<Id>1352236811630</Id>
 				<Type>FIXED</Type>
+				<Expression><![CDATA[1]]></Expression>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1352470269816</Id>
@@ -14365,8 +14317,8 @@ try{
 			<RangeVariationParamValue>	
 				<Id>1353108085609</Id>
 				<Type>RANGE</Type>
-				<From><![CDATA[0]]></From>
-				<To><![CDATA[7]]></To>
+				<From><![CDATA[1]]></From>
+				<To><![CDATA[3]]></To>
 				<Step><![CDATA[1]]></Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
@@ -14386,6 +14338,11 @@ try{
 			<RangeVariationParamValue>	
 				<Id>1353982756505</Id>
 				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1354066518678</Id>
+				<Type>FIXED</Type>
+				<Expression><![CDATA[getCurrentIteration()]]></Expression>
 			</RangeVariationParamValue>
 			<ModelTimeProperties 
 				UseCalendar="false">
@@ -14423,7 +14380,7 @@ try{
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>1</ReplicationPerIteration>
+				<ReplicationPerIteration>2</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>10</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
