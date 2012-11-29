@@ -1914,6 +1914,9 @@ if(dayOfMonth==1){
 }
 //do year end updating if is the first day of a new year;
 if(julianDay==1){
+	for(Vessel v : vessels){
+		v.updateAnnualCPUEMemory();
+	}
 	if(logProfile == 1){
 		for(String[] logLine : profileArray){
 			loggers.get("Profile").writeNext(logLine);
@@ -4349,7 +4352,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1354154708251</Id>
 					<Name><![CDATA[annualCPUEMemory]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>700</X><Y>-80</Y>
+					<X>700</X><Y>-60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4357,6 +4360,20 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[ArrayList<MemoryOfCPUE>]]></Type>        
 						<InitialValue><![CDATA[new ArrayList<MemoryOfCPUE>()]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354155734903</Id>
+					<Name><![CDATA[cpueMemoryLastYear]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>700</X><Y>-40</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[LinkedHashMap<GearType,LinkedHashMap>]]></Type>        
+						<InitialValue><![CDATA[new LinkedHashMap<GearType,LinkedHashMap>()]]></InitialValue>                 	
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -5668,6 +5685,7 @@ mem.gridCell = currentLocation;
 mem.julianDay = get_Main().julianDay;
 mem.month = get_Main().month;
 mem.cpue = (LinkedHashMap<CatchSpecies,Double>)fishCatch.clone();
+mem.gearType = setGearType;
 tripCPUE.add(mem);
 
 setInCurrentLocation++;
@@ -6083,10 +6101,16 @@ for(GearType gearType : get_Main().gearTypes){
 				// Estimate Revenue
 				tripRevenue=0.0;
 				for(CatchSpecies catchSpec : get_Main().catchSpecies){
-					estimatedCPUE.put(catchSpec,(gearType.constantCPUE.get(catchSpec) + 
-						gearType.getMonthlyCPUE(catchSpec,midwayCalendarMonth) + 
-						gearType.getYearlyCPUE(catchSpec,get_Main().baseYear) +
-						gridCell.getGridCellCPUE(gearType,catchSpec)));
+					if(cpueMemoryLastYear.containsKey(gearType) &&
+							((LinkedHashMap<Integer,LinkedHashMap>)cpueMemoryLastYear.get(gearType)).containsKey(midwayCalendarMonth) &&
+							((LinkedHashMap<GridCell,LinkedHashMap>)((LinkedHashMap<Integer,LinkedHashMap>)cpueMemoryLastYear.get(gearType)).get(midwayCalendarMonth)).containsKey(gridCell)){
+						estimatedCPUE.put(catchSpec,((LinkedHashMap<CatchSpecies,Double>)((LinkedHashMap<GridCell,LinkedHashMap>)((LinkedHashMap<Integer,LinkedHashMap>)cpueMemoryLastYear.get(gearType)).get(midwayCalendarMonth)).get(gridCell)).get(catchSpec));
+					}else{
+						estimatedCPUE.put(catchSpec,(gearType.constantCPUE.get(catchSpec) + 
+							gearType.getMonthlyCPUE(catchSpec,midwayCalendarMonth) + 
+							gearType.getYearlyCPUE(catchSpec,get_Main().baseYear) +
+							gridCell.getGridCellCPUE(gearType,catchSpec)));
+					}
 					tripRevenue += estimatedCPUE.get(catchSpec) * hooks.get(gearType) * daysFishing * projectedPrice.get(catchSpec);
 				}
 					
@@ -6695,6 +6719,76 @@ if(get_Main().logReturn == 1){
 	return "marketing";
 	default:
 	return "unknownState";
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnType><![CDATA[void]]></ReturnType>
+					<Id>1354155822364</Id>
+					<Name><![CDATA[updateAnnualCPUEMemory]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>700</X><Y>-20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[if(annualCPUEMemory.size()==0)return;
+
+GearType memGearType = null;
+Integer memMonth = null;
+GridCell memCell = null;
+
+LinkedHashMap<GearType,LinkedHashMap> setCountLastYear = new LinkedHashMap<GearType,LinkedHashMap>();
+LinkedHashMap<Integer,LinkedHashMap> monthMap = null;
+LinkedHashMap<Integer,LinkedHashMap> monthCountMap = null;
+LinkedHashMap<GridCell,LinkedHashMap> cellMap = null;
+LinkedHashMap<GridCell,Integer> cellCountMap = null;
+
+// First delete the memory from the year before this latest
+cpueMemoryLastYear = new LinkedHashMap<GearType,LinkedHashMap>();
+
+for(MemoryOfCPUE mem : annualCPUEMemory){
+ 	memGearType = mem.gearType;
+	memMonth = mem.month;
+	memCell = mem.gridCell;
+	if(!cpueMemoryLastYear.containsKey(memGearType)){
+		monthMap = new LinkedHashMap<Integer,LinkedHashMap>();
+		cpueMemoryLastYear.put(memGearType,monthMap);	
+		monthCountMap = new LinkedHashMap<Integer,LinkedHashMap>();
+		setCountLastYear.put(memGearType,monthCountMap);
+	}else{
+		monthMap = cpueMemoryLastYear.get(memGearType);
+		monthCountMap = setCountLastYear.get(memGearType);
+	}
+	if(!monthMap.containsKey(memMonth)){
+		cellMap = new LinkedHashMap<GridCell,LinkedHashMap>();
+		cellCountMap = new LinkedHashMap<GridCell,Integer>();
+		monthMap.put(memMonth,cellMap);
+		monthCountMap.put(memMonth,cellCountMap);
+	}else{
+		cellMap = monthMap.get(memMonth);
+		cellCountMap = monthCountMap.get(memMonth);
+	}
+	if(!cellMap.containsKey(memCell)){
+		cellMap.put(memCell,mem.cpue);
+		cellCountMap.put(memCell,1);
+	}else{
+		for(CatchSpecies catchSpec : get_Main().catchSpecies){
+			cellMap.get(memCell).put(catchSpec,(((LinkedHashMap<CatchSpecies,Double>)cellMap.get(memCell)).get(catchSpec)*cellCountMap.get(memCell) + mem.cpue.get(catchSpec))/(cellCountMap.get(memCell)+1));
+		}
+		cellCountMap.put(memCell,cellCountMap.get(memCell)+1);
+	}
+}
+for(GearType gearType : cpueMemoryLastYear.keySet()){
+	monthMap = cpueMemoryLastYear.get(gearType);
+	for(Integer month : monthMap.keySet()){
+		cellMap = monthMap.get(month);
+		for(GridCell gridCell : cellMap.keySet()){
+			for(CatchSpecies catchSpec : get_Main().catchSpecies){
+				cellMap.get(gridCell).put(catchSpec,((LinkedHashMap<CatchSpecies,Double>)cellMap.get(gridCell)).get(catchSpec)/hooks.get(gearType));
+				//System.out.println(get_Main().stringTime+","+ID+","+gearType.gearTypeCode+","+month+","+gridCell.gridID+","+catchSpec.catchSpeciesCode+","+cellMap.get(gridCell).get(catchSpec));
+			}
+		}
+	}
 }]]></Body>
 				</Function>
 			</Functions>
@@ -8202,7 +8296,7 @@ switch(get_Main().gridDisplayRadio.getValue()){
 				<Rectangle>
 					<Id>1332463125962</Id>
 					<Name><![CDATA[rectangle2]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>0</X><Y>0</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -10911,6 +11005,20 @@ for(GearType gearType : get_Main().gearTypes){
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[GridCell]]></Type>        
+						<InitialValue><![CDATA[null]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354156288477</Id>
+					<Name><![CDATA[gearType]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[GearType]]></Type>        
 						<InitialValue><![CDATA[null]]></InitialValue>                 	
 					</Properties>
 				</Variable>
