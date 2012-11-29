@@ -1956,7 +1956,7 @@ if(dayOfMonth==1)logData(LoggerType.Events,new String[]{stringTime,"HLF","","","
 for (GridCell g: gridCells){
 	g.updateCPUE();
 	if(dayOfMonth==1)g.updateIPUE();
-	g.updateFillColor();
+	//g.updateFillColor();
 }
 if(logProfile == 1){
 	profileArray.add(new String[]{"dailyUpdating","end",""+System.currentTimeMillis()});		
@@ -3481,7 +3481,7 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 				<Text>
 					<Id>1344381623257</Id>
 					<Name><![CDATA[text48]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>630</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3579,7 +3579,7 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1344381591957</Id>
 					<Name><![CDATA[gridDisplayRadio]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>640</X><Y>20</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -5710,7 +5710,7 @@ if(get_Main().logProfile == 1){
 // The displayCrowdedness acts as if the vessel stays in it's current location during travel until the travel is over, then it 
 // pops to the new cell immediately.
 // The model crowdedness is truer to reality where the vessel leaves a cell when it starts travel and arrives later.
-// This function takes has accepts null as the argument for a new location, which is assumed to mean the vessel is going to begin traveling,
+// This function accepts null as the argument for a new location, which is assumed to mean the vessel is going to begin traveling,
 // in this case the model crowdedness is decremented but the display crowdedness (and vessel location) is not
 
 if(currentLocation != null){
@@ -5722,8 +5722,13 @@ if(currentLocation != null){
 	currentLocation.displayCrowdedness++;
 	currentLocation.crowdedness++;
 
-	xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
-	yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+	if(currentLocation.equals(get_Main().homeCell)){
+		xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+		yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+	}else{
+		xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * 5 * get_Main().gridCellDisplayWidth; //get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+		yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * 5 * get_Main().gridCellDisplayWidth; //get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+	}
 	displayLocation = currentLocation;
 }
 ]]></Body>
@@ -8120,7 +8125,7 @@ for(GearType gearType : get_Main().gearTypes){
 					<ReturnType><![CDATA[void]]></ReturnType>
 					<Id>1343933469496</Id>
 					<Name><![CDATA[updateFillColor]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>30</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -8177,7 +8182,7 @@ switch(get_Main().gridDisplayRadio.getValue()){
 				<Rectangle>
 					<Id>1332463125962</Id>
 					<Name><![CDATA[rectangle2]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>0</X><Y>0</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
