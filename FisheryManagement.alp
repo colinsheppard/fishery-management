@@ -2766,6 +2766,25 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 					<EnvironmentCode><![CDATA[environment]]></EnvironmentCode>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>0</Id>
+					<Name><![CDATA[memoryOfCPUE]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-180</X><Y>120</Y>
+					<Label><X>20</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[fishery_management]]></PackageName>
+						<ClassName><![CDATA[MemoryOfCPUE]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParametersSubstitute><![CDATA[]]></GenericParametersSubstitute>
+					<Parameters>
+					</Parameters>
+					<Replication><![CDATA[0]]></Replication>	
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+				</EmbeddedObject>
 			</EmbeddedObjects>
 
 			<Shapes>
@@ -4217,20 +4236,6 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1344376537123</Id>
-					<Name><![CDATA[memoryOfCPUELocations]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>110</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[ArrayList<GridCell>]]></Type>        
-						<InitialValue><![CDATA[new ArrayList<GridCell>()]]></InitialValue>                 	
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1344381263019</Id>
 					<Name><![CDATA[displayLocation]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
@@ -4327,17 +4332,31 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1354037679858</Id>
-					<Name><![CDATA[memoryOfCPUECatch]]></Name>
+					<Id>1354154016759</Id>
+					<Name><![CDATA[tripCPUE]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>120</Y>
+					<X>200</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[ArrayList<LinkedHashMap>]]></Type>        
-						<InitialValue><![CDATA[new ArrayList<LinkedHashMap>()]]></InitialValue>                 	
+						<Type><![CDATA[ArrayList<MemoryOfCPUE>]]></Type>        
+						<InitialValue><![CDATA[new ArrayList<MemoryOfCPUE>()]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354154708251</Id>
+					<Name><![CDATA[annualCPUEMemory]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>700</X><Y>-80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[ArrayList<MemoryOfCPUE>]]></Type>        
+						<InitialValue><![CDATA[new ArrayList<MemoryOfCPUE>()]]></InitialValue>                 	
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -5342,8 +5361,10 @@ fuelRemaining -= fuelPerDay*travelTime;]]></Action>
 					<Properties Source="1244587048529" Target="1346349100665" Trigger="timeout">
 						<Action><![CDATA[sellFish();
 
-memoryOfCPUELocations.clear();
-memoryOfCPUECatch.clear();
+for(MemoryOfCPUE mem : tripCPUE){
+	annualCPUEMemory.add(mem);
+}
+tripCPUE.clear();
 ]]></Action>
 						<Timeout><![CDATA[1]]></Timeout>
 						<Condition><![CDATA[true]]></Condition>
@@ -5642,8 +5663,13 @@ if(get_Main().logProfile == 1){
 	get_Main().profileArray.add(new String[]{"catcyAndInteract","end",""+System.currentTimeMillis()});		
 }
 // Remember the CPUE from this fishing set
-memoryOfCPUELocations.add(currentLocation);
-memoryOfCPUECatch.add((LinkedHashMap<CatchSpecies,Double>)fishCatch.clone());
+MemoryOfCPUE mem = get_Main().add_memoryOfCPUE();
+mem.gridCell = currentLocation;
+mem.julianDay = get_Main().julianDay;
+mem.month = get_Main().month;
+mem.cpue = (LinkedHashMap<CatchSpecies,Double>)fishCatch.clone();
+tripCPUE.add(mem);
+
 setInCurrentLocation++;
 setGearType.effortSofar++;
 setGearType.numberOfSets.put(currentLocation.oceanRegion,setGearType.numberOfSets.get(currentLocation.oceanRegion) + 1);
@@ -6281,9 +6307,8 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 for(CatchSpecies catchSpec : get_Main().catchSpecies){
 	fishPrice.put(catchSpec, setGearType.estimatePrice(this,catchSpec,get_Main().julianDay));
 	fishRevenue.put(catchSpec, fishPrice.get(catchSpec) * fishCatch.get(catchSpec));
-	for(int i=0; i< memoryOfCPUELocations.size(); i++){
-		memoryOfCPUELocations.get(i).oceanRegion.catchValue.put(catchSpec,memoryOfCPUELocations.get(i).oceanRegion.catchValue.get(catchSpec) + 
-			fishPrice.get(catchSpec) * ((LinkedHashMap<CatchSpecies,Double>)memoryOfCPUECatch.get(i)).get(catchSpec));
+	for(MemoryOfCPUE mem : tripCPUE){
+		mem.gridCell.oceanRegion.catchValue.put(catchSpec,mem.gridCell.oceanRegion.catchValue.get(catchSpec) + fishPrice.get(catchSpec) * mem.cpue.get(catchSpec));
 	}
 }]]></Body>
 				</Function>
@@ -7221,7 +7246,7 @@ if(get_Main().logReturn == 1){
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>170</Width>
-					<Height>90</Height>
+					<Height>100</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
@@ -10801,6 +10826,93 @@ for(GearType gearType : get_Main().gearTypes){
 							<Separator>false</Separator>
 						</ParameterEditor>
 					</Properties>                 
+				</Variable>
+			</Variables>
+
+		</ActiveObjectClass>
+		<!--   =========   Active Object Class   ========  -->
+		<ActiveObjectClass>
+			<Id>1354154911023</Id>
+			<Name><![CDATA[MemoryOfCPUE]]></Name>
+			<ExcludeFromBuild>false</ExcludeFromBuild>
+			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
+			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
+			<IconTopGroupPersistent>true</IconTopGroupPersistent>
+			<Import><![CDATA[import java.util.LinkedHashMap;]]></Import>
+			<Generic>false</Generic>
+			<GenericParameters><![CDATA[T]]></GenericParameters>
+			<GenericParametersLabel><![CDATA[Generic parameters:]]></GenericParametersLabel>
+			<Agent>true</Agent>
+			<SamplesToKeep>100</SamplesToKeep>
+			<MakeDefaultViewArea>true</MakeDefaultViewArea>
+			<SceneGridColor/>
+			<SceneBackgroundColor/>
+			<AgentProperties>
+	 			<SpaceType>CONTINUOUS</SpaceType>			
+				<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+			</AgentProperties>
+
+			<DatasetsCreationProperties>
+				<AutoCreate>true</AutoCreate>
+				<RecurrenceCode><![CDATA[1]]></RecurrenceCode>
+			</DatasetsCreationProperties>
+
+			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1354154935889</Id>
+					<Name><![CDATA[julianDay]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Integer]]></Type>        
+						<InitialValue><![CDATA[null]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354154935891</Id>
+					<Name><![CDATA[month]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Integer]]></Type>        
+						<InitialValue><![CDATA[null]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354154935893</Id>
+					<Name><![CDATA[cpue]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[LinkedHashMap<CatchSpecies,Double>]]></Type>        
+						<InitialValue><![CDATA[null]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354154935895</Id>
+					<Name><![CDATA[gridCell]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[GridCell]]></Type>        
+						<InitialValue><![CDATA[null]]></InitialValue>                 	
+					</Properties>
 				</Variable>
 			</Variables>
 
