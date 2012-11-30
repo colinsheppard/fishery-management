@@ -311,6 +311,7 @@ try{
 		vess.ownerOperated = csvInfo.getInt("OwnerOperated")==1;
 		vess.ethnicity = csvInfo.getDouble("Ownerethnicity");
 		vess.revenueShare = csvInfo.getDouble("revenueShare");
+		vess.maxRevenue = csvInfo.getDouble("MaxRevenue");
 		vess.changeLocation(homeCell);
 		for(GearType gearType : gearTypes){
 			vess.typicalTripLength.put(gearType,csvInfo.getInt("TripLength"+gearType.gearTypeCode));
@@ -1959,7 +1960,7 @@ if(dayOfMonth==1)logData(LoggerType.Events,new String[]{stringTime,"HLF","","","
 for (GridCell g: gridCells){
 	g.updateCPUE();
 	if(dayOfMonth==1)g.updateIPUE();
-	g.updateFillColor();
+	//g.updateFillColor();
 }
 if(logProfile == 1){
 	profileArray.add(new String[]{"dailyUpdating","end",""+System.currentTimeMillis()});		
@@ -2791,6 +2792,963 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 			</EmbeddedObjects>
 
 			<Shapes>
+				<Group>
+					<Id>1354316737427</Id>
+					<Name><![CDATA[group]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>380</X><Y>590</Y>
+					<Label><X>17</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Shapes>
+				<Group>
+					<Id>1354316737431</Id>
+					<Name><![CDATA[zone]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-20</X><Y>40</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Shapes>
+				<Rectangle>
+					<Id>1354316737433</Id>
+					<Name><![CDATA[NorthWest]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-337</X><Y>-433</Y>
+					<Label><X>70</X><Y>180</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>true</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>393</Width>
+					<Height>804</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-7876870</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Rectangle>
+					<Id>1354316737435</Id>
+					<Name><![CDATA[South]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-337</X><Y>102</Y>
+					<Label><X>260</X><Y>80</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>803</Width>
+					<Height>268</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1120086</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+			</Shapes>
+				</Group>
+				<Rectangle>
+					<Id>1354316737429</Id>
+					<Name><![CDATA[Northeast]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>35</X><Y>-393</Y>
+					<Label><X>140</X><Y>180</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>410</Width>
+					<Height>535</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-12799119</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1354316737437</Id>
+					<Name><![CDATA[text84]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>410</X><Y>-410</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[135 W]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737439</Id>
+					<Name><![CDATA[text85]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>161</X><Y>-410</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[150 W]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737441</Id>
+					<Name><![CDATA[text99]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-17</X><Y>-410</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[160 W]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737443</Id>
+					<Name><![CDATA[text87]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-196</X><Y>-410</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[170 W]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737445</Id>
+					<Name><![CDATA[text88]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-393</X><Y>-410</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[180 W]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737447</Id>
+					<Name><![CDATA[text89]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>321</X><Y>-410</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[140 W]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737449</Id>
+					<Name><![CDATA[text90]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>-232</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 35 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737451</Id>
+					<Name><![CDATA[text91]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>-53</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 25 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737453</Id>
+					<Name><![CDATA[text92]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>125</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 15 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737455</Id>
+					<Name><![CDATA[text93]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>393</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[  0]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737457</Id>
+					<Name><![CDATA[text94]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>303</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 5 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737459</Id>
+					<Name><![CDATA[text95]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>214</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 10 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737461</Id>
+					<Name><![CDATA[text96]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>35</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 20 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737463</Id>
+					<Name><![CDATA[text97]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>-142</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 30 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354316737465</Id>
+					<Name><![CDATA[text98]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>445</X><Y>-321</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ 40 N]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Line>
+					<Id>1354316737467</Id>
+					<Name><![CDATA[line]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-179</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737469</Id>
+					<Name><![CDATA[line3]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>357</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737471</Id>
+					<Name><![CDATA[line4]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737473</Id>
+					<Name><![CDATA[line7]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>-35</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737475</Id>
+					<Name><![CDATA[line9]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>321</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737477</Id>
+					<Name><![CDATA[line10]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>232</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737479</Id>
+					<Name><![CDATA[line5]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-268</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737481</Id>
+					<Name><![CDATA[line14]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>268</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Rectangle>
+					<Id>1354316737483</Id>
+					<Name><![CDATA[NorthCenteral]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-143</X><Y>-393</Y>
+					<Label><X>80</X><Y>70</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>true</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>410</Width>
+					<Height>303</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-2448096</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Line>
+					<Id>1354316737485</Id>
+					<Name><![CDATA[line15]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>53</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737487</Id>
+					<Name><![CDATA[line16]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>142</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737489</Id>
+					<Name><![CDATA[line12]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-89</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737491</Id>
+					<Name><![CDATA[line1]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737493</Id>
+					<Name><![CDATA[line8]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>-214</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737495</Id>
+					<Name><![CDATA[line11]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>-303</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737497</Id>
+					<Name><![CDATA[line13]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>89</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737499</Id>
+					<Name><![CDATA[line6]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>-357</X><Y>-125</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>803</Dx>
+					<Dy>0</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Line>
+					<Id>1354316737501</Id>
+					<Name><![CDATA[line2]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>179</X><Y>-393</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>804</Dy>
+					<Dz>0</Dz>
+				</Line>
+			</Shapes>
+				</Group>
 				<EmbeddedObjectPresentation>
 					<Id>1218095372140</Id>
 					<Name><![CDATA[gridCells_presentation]]></Name>
@@ -3297,23 +4255,6 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 					<Alignment>LEFT</Alignment>
 				</Text>
 				<EmbeddedObjectPresentation>
-					<Id>1217919393656</Id>
-					<Name><![CDATA[vessels_presentation]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>20</X><Y>200</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<ReplicationCode><![CDATA[vessels.size()]]></ReplicationCode>
-					<AsObject>false</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Lock>false</Lock>
-					<ShowIn3D>false</ShowIn3D>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-				</EmbeddedObjectPresentation>
-				<EmbeddedObjectPresentation>
 					<Id>1342133038265</Id>
 					<Name><![CDATA[networks_presentation]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
@@ -3503,7 +4444,7 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 				<Text>
 					<Id>1344381623257</Id>
 					<Name><![CDATA[text48]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>630</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3573,6 +4514,160 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
+				<Rectangle>
+					<Id>1354317390838</Id>
+					<Name><![CDATA[rectangle]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>330</X><Y>555</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>180</Width>
+					<Height>180</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1354317199105</Id>
+					<Name><![CDATA[text1]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>400</X><Y>670</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[MHI
+ K1]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354317199107</Id>
+					<Name><![CDATA[text12]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>110</X><Y>550</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Northwest
+    
+      K4]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354317199109</Id>
+					<Name><![CDATA[text14]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>380</X><Y>340</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[North Central
+
+         K3]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354317199111</Id>
+					<Name><![CDATA[text15]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>650</X><Y>550</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Northeast
+
+         K2]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1354317199113</Id>
+					<Name><![CDATA[text16]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>400</X><Y>800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[South
+
+  K5]]></Text>
+					<Font>
+						<Name>Arial</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 				<Image>
 					<Id>1354060019429</Id>
 					<Name><![CDATA[image]]></Name>
@@ -3595,13 +4690,30 @@ if(gridCell.totalCellEffort++ > maxEffortInCell) maxEffortInCell++;
 					</ImageFiles>
 					<OriginalSize>false</OriginalSize>
 				</Image>
+				<EmbeddedObjectPresentation>
+					<Id>1217919393656</Id>
+					<Name><![CDATA[vessels_presentation]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>20</X><Y>200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<ReplicationCode><![CDATA[vessels.size()]]></ReplicationCode>
+					<AsObject>false</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+				</EmbeddedObjectPresentation>
 			</Shapes>
 			<Controls>
 				<Control Type="RadioButtons">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1344381591957</Id>
 					<Name><![CDATA[gridDisplayRadio]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>640</X><Y>20</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4374,6 +5486,20 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[LinkedHashMap<GearType,LinkedHashMap>]]></Type>        
 						<InitialValue><![CDATA[new LinkedHashMap<GearType,LinkedHashMap>()]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354242231370</Id>
+					<Name><![CDATA[maxRevenue]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>700</X><Y>-210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Double]]></Type>        
+						<InitialValue><![CDATA[0.0]]></InitialValue>                 	
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
@@ -5754,7 +6880,7 @@ if(get_Main().logProfile == 1){
 // The displayCrowdedness acts as if the vessel stays in it's current location during travel until the travel is over, then it 
 // pops to the new cell immediately.
 // The model crowdedness is truer to reality where the vessel leaves a cell when it starts travel and arrives later.
-// This function takes has accepts null as the argument for a new location, which is assumed to mean the vessel is going to begin traveling,
+// This function accepts null as the argument for a new location, which is assumed to mean the vessel is going to begin traveling,
 // in this case the model crowdedness is decremented but the display crowdedness (and vessel location) is not
 
 if(currentLocation != null){
@@ -5768,6 +6894,7 @@ if(currentLocation != null){
 
 	xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
 	yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+
 	displayLocation = currentLocation;
 }
 ]]></Body>
@@ -6575,7 +7702,7 @@ if(anyFishCaughtThisTrip)ageOfCatch++;
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[Boolean returnMaxTrip = false, returnOutOfFuel = false, returnOutOfStorage = false, returnNegativeNetRevenue = false;
+					<Body><![CDATA[Boolean returnMaxTrip = false, returnOutOfFuel = false, returnOutOfStorage = false, returnGrossRevenue = false;
 
 returnToPort = false;
 
@@ -6592,6 +7719,7 @@ if(time() - departureDate + travelTime >= maxDaysInSea){
 if(fuelRemaining <= fuelPerDay * (travelTime + 2)){
 	returnOutOfFuel = true;
 }
+
 // Check remaining storage space
 //   first predict fish catch
 LinkedHashMap<CatchSpecies,Double> currentDayExpectedCatch = new LinkedHashMap<CatchSpecies,Double>();
@@ -6599,29 +7727,22 @@ Double totalCurrentDayExpectedCatch = 0.0;
 Double totalFishCatchWeight = 0.0;
 for(CatchSpecies catchSpec : get_Main().catchSpecies){
 	if(!currentDayExpectedCatch.containsKey(catchSpec))currentDayExpectedCatch.put(catchSpec,0.0);
-	currentDayExpectedCatch.put(catchSpec,currentDayExpectedCatch.get(catchSpec) + (projectedCatch.get(catchSpec) + totalFishCatch.get(catchSpec))/(1 + setsInTrip));
-	totalCurrentDayExpectedCatch += currentDayExpectedCatch.get(catchSpec);
+	currentDayExpectedCatch.put(catchSpec,totalFishCatch.get(catchSpec)/(setsInTrip));
+	totalCurrentDayExpectedCatch += (projectedCatch.get(catchSpec) + totalFishCatch.get(catchSpec))/(1+setsInTrip);
 	totalFishCatchWeight += totalFishCatch.get(catchSpec);
 }
 if( (totalFishCatchWeight + totalCurrentDayExpectedCatch ) > fishHoldingCapacity){
 	returnOutOfStorage = true;
 }
 
-// Compare the opportunity cost versus. benefit
+// Compare trip revenue to target revenue
 if(!(returnMaxTrip || returnOutOfFuel || returnOutOfStorage)){
 	for(CatchSpecies catchSpec : get_Main().catchSpecies){
-		expectedGrossRevenue += currentDayExpectedCatch.get(catchSpec) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay);
+		expectedGrossRevenue += currentDayExpectedCatch.get(catchSpec) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay) * setsInTrip;
 	}
-	fishSpoilageSetDate = roundInt(time() - get_Main().maxStorageDays.get(setGearType) + travelTime).toString();
-	if(catchByDay.containsKey(fishSpoilageSetDate)){
-	  	for(CatchSpecies catchSpec : get_Main().catchSpecies){
-			fishSpoilageCost += ((Double)catchByDay.get(fishSpoilageSetDate).get(catchSpec)) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay);
-		}
-	}
-	expectedNetRevenue = expectedGrossRevenue - operatingCost.get(setGearType) - fishSpoilageCost;
-	returnNegativeNetRevenue = expectedNetRevenue < 0;
+	returnGrossRevenue = expectedGrossRevenue > maxRevenue;
 }
-returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnNegativeNetRevenue;
+returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnGrossRevenue;
 //get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Decide whether to return: result="+returnToPort});
 if(get_Main().logReturn == 1){
 	String[] stringsToLog = new String[17 + 4 * get_Main().catchSpecies.size()];
@@ -6651,7 +7772,7 @@ if(get_Main().logReturn == 1){
 	stringsToLog[stringsToLogCounter++] = returnMaxTrip.toString();
 	stringsToLog[stringsToLogCounter++] = returnOutOfFuel.toString();
 	stringsToLog[stringsToLogCounter++] = returnOutOfStorage.toString();
-	stringsToLog[stringsToLogCounter++] = returnNegativeNetRevenue.toString();
+//	stringsToLog[stringsToLogCounter++] = returnNegativeNetRevenue.toString();
 	stringsToLog[stringsToLogCounter++] = returnToPort.toString();
 	get_Main().loggers.get("Return").writeNext(stringsToLog);
 }]]></Body>
@@ -8239,7 +9360,7 @@ for(GearType gearType : get_Main().gearTypes){
 					<ReturnType><![CDATA[void]]></ReturnType>
 					<Id>1343933469496</Id>
 					<Name><![CDATA[updateFillColor]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>30</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -14538,7 +15659,7 @@ try{
 				<Id>1353108085609</Id>
 				<Type>RANGE</Type>
 				<From><![CDATA[1]]></From>
-				<To><![CDATA[3]]></To>
+				<To><![CDATA[7]]></To>
 				<Step><![CDATA[1]]></Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
