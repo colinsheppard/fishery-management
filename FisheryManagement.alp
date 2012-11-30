@@ -5722,13 +5722,9 @@ if(currentLocation != null){
 	currentLocation.displayCrowdedness++;
 	currentLocation.crowdedness++;
 
-	if(currentLocation.equals(get_Main().homeCell)){
-		xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
-		yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
-	}else{
-		xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * 5 * get_Main().gridCellDisplayWidth; //get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
-		yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * 5 * get_Main().gridCellDisplayWidth; //get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
-	}
+	xCoord=(currentLocation.col+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+	yCoord=(currentLocation.row+0.5) * get_Main().gridCellDisplayWidth + (random()-0.5) * get_Main().gridCellDisplayWidth * (1 - 1/(2 * sqrt(currentLocation.displayCrowdedness)));
+
 	displayLocation = currentLocation;
 }
 ]]></Body>
@@ -14323,7 +14319,7 @@ try{
 				<Id>1353108085609</Id>
 				<Type>RANGE</Type>
 				<From><![CDATA[1]]></From>
-				<To><![CDATA[3]]></To>
+				<To><![CDATA[7]]></To>
 				<Step><![CDATA[1]]></Step>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
