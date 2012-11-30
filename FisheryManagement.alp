@@ -311,6 +311,7 @@ try{
 		vess.ownerOperated = csvInfo.getInt("OwnerOperated")==1;
 		vess.ethnicity = csvInfo.getDouble("Ownerethnicity");
 		vess.revenueShare = csvInfo.getDouble("revenueShare");
+		vess.maxRevenue = csvInfo.getDouble("MaxRevenue");
 		vess.changeLocation(homeCell);
 		for(GearType gearType : gearTypes){
 			vess.typicalTripLength.put(gearType,csvInfo.getInt("TripLength"+gearType.gearTypeCode));
@@ -4340,6 +4341,20 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 						<InitialValue><![CDATA[new ArrayList<LinkedHashMap>()]]></InitialValue>                 	
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354242231370</Id>
+					<Name><![CDATA[maxRevenue]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>700</X><Y>-210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Double]]></Type>        
+						<InitialValue><![CDATA[0.0]]></InitialValue>                 	
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1207730460234</Id>
 					<Name><![CDATA[fixedCost]]></Name>
@@ -6527,7 +6542,7 @@ if(anyFishCaughtThisTrip)ageOfCatch++;
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[Boolean returnMaxTrip = false, returnOutOfFuel = false, returnOutOfStorage = false, returnNegativeNetRevenue = false;
+					<Body><![CDATA[Boolean returnMaxTrip = false, returnOutOfFuel = false, returnOutOfStorage = false, returnGrossRevenue = false;
 
 returnToPort = false;
 
@@ -6551,8 +6566,8 @@ Double totalCurrentDayExpectedCatch = 0.0;
 Double totalFishCatchWeight = 0.0;
 for(CatchSpecies catchSpec : get_Main().catchSpecies){
 	if(!currentDayExpectedCatch.containsKey(catchSpec))currentDayExpectedCatch.put(catchSpec,0.0);
-	currentDayExpectedCatch.put(catchSpec,currentDayExpectedCatch.get(catchSpec) + (projectedCatch.get(catchSpec) + totalFishCatch.get(catchSpec))/(1 + setsInTrip));
-	totalCurrentDayExpectedCatch += currentDayExpectedCatch.get(catchSpec);
+	currentDayExpectedCatch.put(catchSpec,totalFishCatch.get(catchSpec)/(setsInTrip));
+	totalCurrentDayExpectedCatch += (projectedCatch.get(catchSpec) + totalFishCatch.get(catchSpec))/(1+setsInTrip);
 	totalFishCatchWeight += totalFishCatch.get(catchSpec);
 }
 if( (totalFishCatchWeight + totalCurrentDayExpectedCatch ) > fishHoldingCapacity){
@@ -6564,16 +6579,9 @@ if(!(returnMaxTrip || returnOutOfFuel || returnOutOfStorage)){
 	for(CatchSpecies catchSpec : get_Main().catchSpecies){
 		expectedGrossRevenue += currentDayExpectedCatch.get(catchSpec) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay);
 	}
-	fishSpoilageSetDate = roundInt(time() - get_Main().maxStorageDays.get(setGearType) + travelTime).toString();
-	if(catchByDay.containsKey(fishSpoilageSetDate)){
-	  	for(CatchSpecies catchSpec : get_Main().catchSpecies){
-			fishSpoilageCost += ((Double)catchByDay.get(fishSpoilageSetDate).get(catchSpec)) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay);
-		}
-	}
-	expectedNetRevenue = expectedGrossRevenue - operatingCost.get(setGearType) - fishSpoilageCost;
-	returnNegativeNetRevenue = expectedNetRevenue < 0;
+	returnGrossRevenue = expectedGrossRevenue > maxRevenue;
 }
-returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnNegativeNetRevenue;
+returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnGrossRevenue;
 //get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Decide whether to return: result="+returnToPort});
 if(get_Main().logReturn == 1){
 	String[] stringsToLog = new String[17 + 4 * get_Main().catchSpecies.size()];
@@ -6603,7 +6611,7 @@ if(get_Main().logReturn == 1){
 	stringsToLog[stringsToLogCounter++] = returnMaxTrip.toString();
 	stringsToLog[stringsToLogCounter++] = returnOutOfFuel.toString();
 	stringsToLog[stringsToLogCounter++] = returnOutOfStorage.toString();
-	stringsToLog[stringsToLogCounter++] = returnNegativeNetRevenue.toString();
+//	stringsToLog[stringsToLogCounter++] = returnNegativeNetRevenue.toString();
 	stringsToLog[stringsToLogCounter++] = returnToPort.toString();
 	get_Main().loggers.get("Return").writeNext(stringsToLog);
 }]]></Body>
