@@ -1915,9 +1915,6 @@ if(dayOfMonth==1){
 }
 //do year end updating if is the first day of a new year;
 if(julianDay==1){
-	for(Vessel v : vessels){
-		v.updateAnnualCPUEMemory();
-	}
 	if(logProfile == 1){
 		for(String[] logLine : profileArray){
 			loggers.get("Profile").writeNext(logLine);
@@ -4833,20 +4830,6 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1214817082437</Id>
-					<Name><![CDATA[fishRevenue]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>300</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[LinkedHashMap<CatchSpecies,Double>]]></Type>        
-						<InitialValue><![CDATA[new LinkedHashMap<CatchSpecies,Double>()]]></InitialValue>                 	
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1214875335843</Id>
 					<Name><![CDATA[tripCost]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
@@ -5030,7 +5013,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1280530536346</Id>
 					<Name><![CDATA[fishPrice]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>320</Y>
+					<X>200</X><Y>280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5044,7 +5027,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1280530732320</Id>
 					<Name><![CDATA[departureDate]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>280</Y>
+					<X>200</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5057,7 +5040,7 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Id>1280530808366</Id>
 					<Name><![CDATA[returnDate]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>260</Y>
+					<X>200</X><Y>240</Y>
 					<Label><X>20</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5189,20 +5172,6 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Name><![CDATA[setInCurrentLocation]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
 					<X>200</X><Y>70</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue><![CDATA[0]]></InitialValue>                 	
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1309299810856</Id>
-					<Name><![CDATA[numSearchAttempts]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5458,34 +5427,6 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[ArrayList<MemoryOfCPUE>]]></Type>        
 						<InitialValue><![CDATA[new ArrayList<MemoryOfCPUE>()]]></InitialValue>                 	
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1354154708251</Id>
-					<Name><![CDATA[annualCPUEMemory]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>700</X><Y>-60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[ArrayList<MemoryOfCPUE>]]></Type>        
-						<InitialValue><![CDATA[new ArrayList<MemoryOfCPUE>()]]></InitialValue>                 	
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1354155734903</Id>
-					<Name><![CDATA[cpueMemoryLastYear]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>700</X><Y>-40</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[LinkedHashMap<GearType,LinkedHashMap>]]></Type>        
-						<InitialValue><![CDATA[new LinkedHashMap<GearType,LinkedHashMap>()]]></InitialValue>                 	
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -6247,13 +6188,33 @@ tripLength=time()-departureDate;
 					<Id>1348160490761</Id>
 					<Name><![CDATA[foundOrNotFoundGround]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>530</X><Y>480</Y>
+					<X>530</X><Y>440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Properties>	
 					</Properties>	
+				</StatechartElement>
+				<StatechartElement Class="State" ParentState="fishingGround" ParentStateId="1218062335725">
+					<Id>1354321836105</Id>
+					<Name><![CDATA[decidingToReturn]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>520</X><Y>520</Y>
+					<Label><X>-25</X><Y>-5</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Properties Width="20" Height="20">
+						<EntryAction><![CDATA[if(get_Main().logProfile == 1){
+	get_Main().profileArray.add(new String[]{"returnToPortDecision","start",""+System.currentTimeMillis()});		
+}
+returnToPortDecision();
+if(get_Main().logProfile == 1){
+	get_Main().profileArray.add(new String[]{"returnToPortDecision","end",""+System.currentTimeMillis()});		
+}]]></EntryAction>
+						<FillColor/>
+					</Properties>
 				</StatechartElement>
 				<StatechartElement Class="InitialStatePointer" ParentState="fishingGround" ParentStateId="1218062335725">
 					<Id>1218062335704</Id>
@@ -6269,8 +6230,7 @@ tripLength=time()-departureDate;
 						<Point><X>0</X><Y>30</Y></Point>
 					</Points>
 					<Properties Target="1244512781353">
-					<Action><![CDATA[numSearchAttempts = 0;
-setInCurrentLocation = 0;
+					<Action><![CDATA[setInCurrentLocation = 0;
 fishingGroundFound = false;
 anyFishCaughtThisTrip = false;]]></Action>
 					</Properties>	
@@ -6467,17 +6427,18 @@ fuelRemaining -= fuelPerDay*travelTime;]]></Action>
 					<Id>1244512819424</Id>
 					<Name><![CDATA[notFound]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>530</X><Y>470</Y>
-					<Label><X>-30</X><Y>-20</Y></Label>
+					<X>530</X><Y>450</Y>
+					<Label><X>-70</X><Y>25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>-20</Y></Point>
-						<Point><X>0</X><Y>-50</Y></Point>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>-30</X><Y>50</Y></Point>
+						<Point><X>-10</X><Y>80</Y></Point>
 					</Points>
-					<Properties Source="1348160490761" Target="1244512781353" Trigger="condition">
+					<Properties Source="1348160490761" Target="1354321836105" Trigger="condition">
 						<Timeout><![CDATA[searchingTime]]></Timeout>
 						<Condition><![CDATA[fishingGroundFound]]></Condition>
 						<Rate><![CDATA[1]]></Rate>
@@ -6504,9 +6465,6 @@ fuelRemaining -= fuelPerDay*travelTime;]]></Action>
 					<Properties Source="1244587048529" Target="1346349100665" Trigger="timeout">
 						<Action><![CDATA[sellFish();
 
-for(MemoryOfCPUE mem : tripCPUE){
-	annualCPUEMemory.add(mem);
-}
 tripCPUE.clear();
 ]]></Action>
 						<Timeout><![CDATA[1]]></Timeout>
@@ -6550,7 +6508,7 @@ tripCPUE.clear();
 					<Name><![CDATA[gearTypeClosure3]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
 					<X>670</X><Y>500</Y>
-					<Label><X>-30</X><Y>-5</Y></Label>
+					<Label><X>-20</X><Y>-5</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -6650,15 +6608,15 @@ tripCPUE.clear();
 					<Name><![CDATA[doSearch]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
 					<X>580</X><Y>400</Y>
-					<Label><X>20</X><Y>30</Y></Label>
+					<Label><X>20</X><Y>15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
 						<Point><X>20</X><Y>0</Y></Point>
-						<Point><X>20</X><Y>80</Y></Point>
-						<Point><X>-38</X><Y>80</Y></Point>
+						<Point><X>20</X><Y>40</Y></Point>
+						<Point><X>-38</X><Y>40</Y></Point>
 					</Points>
 					<Properties Source="1244512781353" Target="1348160490761" Trigger="timeout">
 						<Action><![CDATA[if(get_Main().logProfile == 1){
@@ -6785,29 +6743,30 @@ updateTripVariables();]]></Action>
 					<Id>1348160582930</Id>
 					<Name><![CDATA[makingAFishingSet]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>530</X><Y>490</Y>
-					<Label><X>-40</X><Y>25</Y></Label>
+					<X>530</X><Y>450</Y>
+					<Label><X>15</X><Y>25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>70</Y></Point>
+						<Point><X>30</X><Y>50</Y></Point>
+						<Point><X>10</X><Y>80</Y></Point>
 					</Points>
-					<Properties Source="1348160490761" Target="1244586059379" Trigger="timeout">
+					<Properties Source="1348160490761" Target="1354321836105" Trigger="timeout">
 						<Action><![CDATA[if(get_Main().logProfile == 1){
-	get_Main().profileArray.add(new String[]{"catcyAndInteract","start",""+System.currentTimeMillis()});		
+	get_Main().profileArray.add(new String[]{"catchAndInteract","start",""+System.currentTimeMillis()});		
 }
 catchFish();
 setsInTrip++;
-
 interact();
 if(get_Main().logProfile == 1){
-	get_Main().profileArray.add(new String[]{"catcyAndInteract","end",""+System.currentTimeMillis()});		
+	get_Main().profileArray.add(new String[]{"catchAndInteract","end",""+System.currentTimeMillis()});		
 }
 // Remember the CPUE from this fishing set
 MemoryOfCPUE mem = get_Main().add_memoryOfCPUE();
 mem.gridCell = currentLocation;
+mem.time = get_Main().time();
 mem.julianDay = get_Main().julianDay;
 mem.month = get_Main().month;
 mem.cpue = (LinkedHashMap<CatchSpecies,Double>)fishCatch.clone();
@@ -6842,19 +6801,36 @@ if(get_Main().logFishingSet == 1){
 	}
 	stringsToLog[stringsToLogCounter++] = network.previousLocations.size() + "";
 	get_Main().loggers.get("FishingSet").writeNext(stringsToLog);
-}
-if(get_Main().logProfile == 1){
-	get_Main().profileArray.add(new String[]{"returnToPortDecision","start",""+System.currentTimeMillis()});		
-}
-returnToPortDecision();
-if(get_Main().logProfile == 1){
-	get_Main().profileArray.add(new String[]{"returnToPortDecision","end",""+System.currentTimeMillis()});		
 }]]></Action>
 						<Timeout><![CDATA[1]]></Timeout>
 						<Condition><![CDATA[fishingGroundFound]]></Condition>
 						<Rate><![CDATA[1]]></Rate>
 						<MessageType><![CDATA[Object]]></MessageType>
 						<DefaultTransition>false</DefaultTransition>
+						<FilterType><![CDATA[unconditionally]]></FilterType>
+						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
+						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
+					</Properties>	
+				</StatechartElement>
+				<StatechartElement Class="Transition" ParentState="fishingGround" ParentStateId="1218062335725">
+					<Id>1354321918638</Id>
+					<Name><![CDATA[transition]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>530</X><Y>540</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Points>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>0</X><Y>20</Y></Point>
+					</Points>
+					<Properties Source="1354321836105" Target="1244586059379" Trigger="timeout">
+						<Timeout><![CDATA[0]]></Timeout>
+						<Condition><![CDATA[true]]></Condition>
+						<Rate><![CDATA[1]]></Rate>
+						<MessageType><![CDATA[Object]]></MessageType>
+						<DefaultTransition>true</DefaultTransition>
 						<FilterType><![CDATA[unconditionally]]></FilterType>
 						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
@@ -7228,16 +7204,10 @@ for(GearType gearType : get_Main().gearTypes){
 				// Estimate Revenue
 				tripRevenue=0.0;
 				for(CatchSpecies catchSpec : get_Main().catchSpecies){
-					if(cpueMemoryLastYear.containsKey(gearType) &&
-							((LinkedHashMap<Integer,LinkedHashMap>)cpueMemoryLastYear.get(gearType)).containsKey(midwayCalendarMonth) &&
-							((LinkedHashMap<GridCell,LinkedHashMap>)((LinkedHashMap<Integer,LinkedHashMap>)cpueMemoryLastYear.get(gearType)).get(midwayCalendarMonth)).containsKey(gridCell)){
-						estimatedCPUE.put(catchSpec,((LinkedHashMap<CatchSpecies,Double>)((LinkedHashMap<GridCell,LinkedHashMap>)((LinkedHashMap<Integer,LinkedHashMap>)cpueMemoryLastYear.get(gearType)).get(midwayCalendarMonth)).get(gridCell)).get(catchSpec));
-					}else{
-						estimatedCPUE.put(catchSpec,(gearType.constantCPUE.get(catchSpec) + 
+					estimatedCPUE.put(catchSpec,(gearType.constantCPUE.get(catchSpec) + 
 							gearType.getMonthlyCPUE(catchSpec,midwayCalendarMonth) + 
 							gearType.getYearlyCPUE(catchSpec,get_Main().baseYear) +
 							gridCell.getGridCellCPUE(gearType,catchSpec)));
-					}
 					tripRevenue += estimatedCPUE.get(catchSpec) * hooks.get(gearType) * daysFishing * projectedPrice.get(catchSpec);
 				}
 					
@@ -7384,7 +7354,7 @@ if(maxIndr > 0){
 					<Id>1281314691323</Id>
 					<Name><![CDATA[catchFish]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>390</Y>
+					<X>200</X><Y>350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7420,7 +7390,7 @@ catchByDay.put(roundInt(time()).toString(),(LinkedHashMap<CatchSpecies,Double>)f
 					<Id>1281314764635</Id>
 					<Name><![CDATA[interact]]></Name>
 					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>200</X><Y>410</Y>
+					<X>200</X><Y>370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7457,9 +7427,10 @@ for(TurtleSpecies turtleSpec : get_Main().turtleSpecies){
 
 for(CatchSpecies catchSpec : get_Main().catchSpecies){
 	fishPrice.put(catchSpec, setGearType.estimatePrice(this,catchSpec,get_Main().julianDay));
-	fishRevenue.put(catchSpec, fishPrice.get(catchSpec) * fishCatch.get(catchSpec));
 	for(MemoryOfCPUE mem : tripCPUE){
-		mem.gridCell.oceanRegion.catchValue.put(catchSpec,mem.gridCell.oceanRegion.catchValue.get(catchSpec) + fishPrice.get(catchSpec) * mem.cpue.get(catchSpec));
+		if(mem.time >= get_Main().time() - get_Main().maxStorageDays.get(setGearType)){
+			mem.gridCell.oceanRegion.catchValue.put(catchSpec,mem.gridCell.oceanRegion.catchValue.get(catchSpec) + fishPrice.get(catchSpec) * mem.cpue.get(catchSpec));
+		}
 	}
 }]]></Body>
 				</Function>
@@ -7629,6 +7600,7 @@ return fishCatch;
 	return Color.BLACK;
 	case fishingGround:
 	case searching:
+	case decidingToReturn:
 	return setGearType.displayColor;
 	case travelingToPort:
 	return Color.GRAY;
@@ -7702,7 +7674,7 @@ if(anyFishCaughtThisTrip)ageOfCatch++;
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[Boolean returnMaxTrip = false, returnOutOfFuel = false, returnOutOfStorage = false, returnGrossRevenue = false;
+					<Body><![CDATA[Boolean returnMaxTrip = false, returnOutOfFuel = false, returnOutOfStorage = false, returnRevenue = false;
 
 returnToPort = false;
 
@@ -7727,7 +7699,7 @@ Double totalCurrentDayExpectedCatch = 0.0;
 Double totalFishCatchWeight = 0.0;
 for(CatchSpecies catchSpec : get_Main().catchSpecies){
 	if(!currentDayExpectedCatch.containsKey(catchSpec))currentDayExpectedCatch.put(catchSpec,0.0);
-	currentDayExpectedCatch.put(catchSpec,totalFishCatch.get(catchSpec)/(setsInTrip));
+	currentDayExpectedCatch.put(catchSpec,currentDayExpectedCatch.get(catchSpec) + (projectedCatch.get(catchSpec) + totalFishCatch.get(catchSpec))/(1 + setsInTrip));
 	totalCurrentDayExpectedCatch += (projectedCatch.get(catchSpec) + totalFishCatch.get(catchSpec))/(1+setsInTrip);
 	totalFishCatchWeight += totalFishCatch.get(catchSpec);
 }
@@ -7737,12 +7709,27 @@ if( (totalFishCatchWeight + totalCurrentDayExpectedCatch ) > fishHoldingCapacity
 
 // Compare trip revenue to target revenue
 if(!(returnMaxTrip || returnOutOfFuel || returnOutOfStorage)){
-	for(CatchSpecies catchSpec : get_Main().catchSpecies){
-		expectedGrossRevenue += currentDayExpectedCatch.get(catchSpec) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay) * setsInTrip;
+	if(maxRevenue < 0.0){ // flag indicating we should use marginal profit instead of revenue targer
+		fishSpoilageSetDate = roundInt(time() - get_Main().maxStorageDays.get(setGearType) + travelTime).toString();
+		if(catchByDay.containsKey(fishSpoilageSetDate)){
+			for(CatchSpecies catchSpec : get_Main().catchSpecies){
+				fishSpoilageCost += ((Double)catchByDay.get(fishSpoilageSetDate).get(catchSpec)) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay);
+			}
+		} 	
+		expectedNetRevenue = expectedGrossRevenue - operatingCost.get(setGearType) - fishSpoilageCost;
+		returnRevenue = expectedNetRevenue < 0;
+	}else{
+		for(MemoryOfCPUE mem : tripCPUE){
+			if(mem.time >= get_Main().time() + 1 + travelTime - get_Main().maxStorageDays.get(setGearType)){
+				for(CatchSpecies catchSpec : get_Main().catchSpecies){
+					expectedGrossRevenue += mem.cpue.get(catchSpec) * setGearType.estimatePrice(this,catchSpec,get_Main().julianDay);
+				}
+			}
+		}
+		returnRevenue = expectedGrossRevenue > maxRevenue;
 	}
-	returnGrossRevenue = expectedGrossRevenue > maxRevenue;
 }
-returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnGrossRevenue;
+returnToPort = returnMaxTrip || returnOutOfFuel || returnOutOfStorage || returnRevenue;
 //get_Main().logData(Main.LoggerType.Events,new String[]{get_Main().stringTime,"Vessel",ID.toString(),"makingAFishingSet","Decide whether to return: result="+returnToPort});
 if(get_Main().logReturn == 1){
 	String[] stringsToLog = new String[17 + 4 * get_Main().catchSpecies.size()];
@@ -7772,7 +7759,7 @@ if(get_Main().logReturn == 1){
 	stringsToLog[stringsToLogCounter++] = returnMaxTrip.toString();
 	stringsToLog[stringsToLogCounter++] = returnOutOfFuel.toString();
 	stringsToLog[stringsToLogCounter++] = returnOutOfStorage.toString();
-//	stringsToLog[stringsToLogCounter++] = returnNegativeNetRevenue.toString();
+	stringsToLog[stringsToLogCounter++] = returnRevenue.toString();
 	stringsToLog[stringsToLogCounter++] = returnToPort.toString();
 	get_Main().loggers.get("Return").writeNext(stringsToLog);
 }]]></Body>
@@ -7831,6 +7818,7 @@ if(get_Main().logReturn == 1){
 	case searching:
 	return "searching";
 	case fishingGround:
+	case decidingToReturn:
 	return "makingAFishingSet";
 	case travelingToPort:
 	case closureDelay1:
@@ -7840,76 +7828,6 @@ if(get_Main().logReturn == 1){
 	return "marketing";
 	default:
 	return "unknownState";
-}]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnType><![CDATA[void]]></ReturnType>
-					<Id>1354155822364</Id>
-					<Name><![CDATA[updateAnnualCPUEMemory]]></Name>
-					<ExcludeFromBuild>false</ExcludeFromBuild>
-					<X>700</X><Y>-20</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[if(annualCPUEMemory.size()==0)return;
-
-GearType memGearType = null;
-Integer memMonth = null;
-GridCell memCell = null;
-
-LinkedHashMap<GearType,LinkedHashMap> setCountLastYear = new LinkedHashMap<GearType,LinkedHashMap>();
-LinkedHashMap<Integer,LinkedHashMap> monthMap = null;
-LinkedHashMap<Integer,LinkedHashMap> monthCountMap = null;
-LinkedHashMap<GridCell,LinkedHashMap> cellMap = null;
-LinkedHashMap<GridCell,Integer> cellCountMap = null;
-
-// First delete the memory from the year before this latest
-cpueMemoryLastYear = new LinkedHashMap<GearType,LinkedHashMap>();
-
-for(MemoryOfCPUE mem : annualCPUEMemory){
- 	memGearType = mem.gearType;
-	memMonth = mem.month;
-	memCell = mem.gridCell;
-	if(!cpueMemoryLastYear.containsKey(memGearType)){
-		monthMap = new LinkedHashMap<Integer,LinkedHashMap>();
-		cpueMemoryLastYear.put(memGearType,monthMap);	
-		monthCountMap = new LinkedHashMap<Integer,LinkedHashMap>();
-		setCountLastYear.put(memGearType,monthCountMap);
-	}else{
-		monthMap = cpueMemoryLastYear.get(memGearType);
-		monthCountMap = setCountLastYear.get(memGearType);
-	}
-	if(!monthMap.containsKey(memMonth)){
-		cellMap = new LinkedHashMap<GridCell,LinkedHashMap>();
-		cellCountMap = new LinkedHashMap<GridCell,Integer>();
-		monthMap.put(memMonth,cellMap);
-		monthCountMap.put(memMonth,cellCountMap);
-	}else{
-		cellMap = monthMap.get(memMonth);
-		cellCountMap = monthCountMap.get(memMonth);
-	}
-	if(!cellMap.containsKey(memCell)){
-		cellMap.put(memCell,mem.cpue);
-		cellCountMap.put(memCell,1);
-	}else{
-		for(CatchSpecies catchSpec : get_Main().catchSpecies){
-			cellMap.get(memCell).put(catchSpec,(((LinkedHashMap<CatchSpecies,Double>)cellMap.get(memCell)).get(catchSpec)*cellCountMap.get(memCell) + mem.cpue.get(catchSpec))/(cellCountMap.get(memCell)+1));
-		}
-		cellCountMap.put(memCell,cellCountMap.get(memCell)+1);
-	}
-}
-for(GearType gearType : cpueMemoryLastYear.keySet()){
-	monthMap = cpueMemoryLastYear.get(gearType);
-	for(Integer month : monthMap.keySet()){
-		cellMap = monthMap.get(month);
-		for(GridCell gridCell : cellMap.keySet()){
-			for(CatchSpecies catchSpec : get_Main().catchSpecies){
-				cellMap.get(gridCell).put(catchSpec,((LinkedHashMap<CatchSpecies,Double>)cellMap.get(gridCell)).get(catchSpec)/hooks.get(gearType));
-				//System.out.println(get_Main().stringTime+","+ID+","+gearType.gearTypeCode+","+month+","+gridCell.gridID+","+catchSpec.catchSpeciesCode+","+cellMap.get(gridCell).get(catchSpec));
-			}
-		}
-	}
 }]]></Body>
 				</Function>
 			</Functions>
@@ -8412,7 +8330,7 @@ for(GearType gearType : cpueMemoryLastYear.keySet()){
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>170</Width>
-					<Height>180</Height>
+					<Height>140</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
@@ -8494,7 +8412,7 @@ for(GearType gearType : cpueMemoryLastYear.keySet()){
 					<Id>1333150510425</Id>
 					<Name><![CDATA[rectangle8]]></Name>
 					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>180</X><Y>370</Y>
+					<X>180</X><Y>330</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -8519,7 +8437,7 @@ for(GearType gearType : cpueMemoryLastYear.keySet()){
 					<Id>1333150510427</Id>
 					<Name><![CDATA[text24]]></Name>
 					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>180</X><Y>350</Y>
+					<X>180</X><Y>310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -12140,6 +12058,20 @@ for(GearType gearType : get_Main().gearTypes){
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[GearType]]></Type>        
+						<InitialValue><![CDATA[null]]></InitialValue>                 	
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1354319470312</Id>
+					<Name><![CDATA[time]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>110</X><Y>20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Double]]></Type>        
 						<InitialValue><![CDATA[null]]></InitialValue>                 	
 					</Properties>
 				</Variable>
